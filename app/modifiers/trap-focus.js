@@ -1,4 +1,4 @@
-import { modifier } from "ember-modifier";
+import { modifier } from 'ember-modifier';
 
 export default modifier(function trapFocus(element) {
   const [firstFocusableElement] = findFocusableElements(element);
@@ -12,7 +12,7 @@ export default modifier(function trapFocus(element) {
     const lastFocusableElement =
       focusableElements[focusableElements.length - 1];
 
-    console.log("lol");
+    console.log('lol');
 
     if (event.keyCode !== TAB_KEY) {
       return;
@@ -39,19 +39,19 @@ export default modifier(function trapFocus(element) {
     }
   }
 
-  element.addEventListener("keydown", handleKeyDown);
+  element.addEventListener('keydown', handleKeyDown);
 
   return () => {
-    element.removeEventListener("keydown", handleKeyDown);
+    element.removeEventListener('keydown', handleKeyDown);
   };
 });
 
 function findFocusableElements(element) {
   return [
     ...element.querySelectorAll(
-      'a[href], button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])'
-    )
+      'a[href], button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])',
+    ),
   ].filter(
-    (el) => !el.hasAttribute("disabled") && !el.getAttribute("aria-hidden")
+    (el) => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'),
   );
 }
